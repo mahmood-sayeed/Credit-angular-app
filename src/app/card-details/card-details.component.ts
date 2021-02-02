@@ -8,19 +8,19 @@ import {
   SimpleChanges
  } from '@angular/core';
 import { Card } from './card';
-import { FormBuilder, FormGroup, Validators Shared } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { GenericValidator } from '../shared/generic-validator';
 import { DateValidators } from '../shared/date.validator';
 
 @Component({
-  selector: 'app-card-details',
+  selector: 'pm-card-edit',
   templateUrl: './card-details.component.html',
   styleUrls: ['./card-details.component.css']
 })
 export class CardDetailsComponent implements OnInit {
   pageTitle = 'Credit Card Detail';
-  @Input() errorMessage: string;
+  @Input() errorMessage: string = '';
   @Output() create = new EventEmitter<Card>();
   @Output() clearCurrent = new EventEmitter<void>();
 
