@@ -14,10 +14,14 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 
 import { SharedModule } from './shared/shared.module';
+import { MenuComponent } from './menu/menu.component';
+import { ShellComponent } from './menu/shell.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MenuComponent,
+    ShellComponent
   ],
   imports: [
     BrowserModule,

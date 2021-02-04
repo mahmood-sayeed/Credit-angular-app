@@ -2,11 +2,11 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as AppState from '../../state/app.state';
 import { CardState } from './card.reducer';
 
-// Extends the app state to include the card feature.
-// This is required because cards are lazy loaded.
-// So the reference to CardState cannot be added to app.state.ts directly.
+// // Extends the app state to include the card feature.
+// // This is required because cards are lazy loaded.
+// // So the reference to CardState cannot be added to app.state.ts directly.
 export interface State extends AppState.State {
-    cards: CardState;
+    // cards: CardState;
 }
 
 // Selector functions

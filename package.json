@@ -23,6 +23,7 @@
     "@ngrx/effects": "^10.1.2",
     "@ngrx/store": "^9.1.0",
     "@ngrx/store-devtools": "^9.1.0",
+    "bootstrap": "^4.6.0",
     "moment": "^2.29.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

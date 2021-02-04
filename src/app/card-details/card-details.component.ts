@@ -25,6 +25,7 @@ export class CardDetailsComponent implements OnInit {
   @Output() clearCurrent = new EventEmitter<void>();
 
   cardForm: FormGroup;
+  creditCard: Card;
 
   // Use with the generic validation message class
   displayMessage: { [key: string]: string } = {};
@@ -124,9 +125,9 @@ export class CardDetailsComponent implements OnInit {
   saveCard(): void {
     if (this.cardForm.valid) {
       if (this.cardForm.dirty) {
-        const card = this.cardForm.value;
+        const card = { ...this.creditCard, ...this.cardForm.value };
 
-        //this.create.emit(card);
+        this.create.emit(card);
       }
     }
   }
