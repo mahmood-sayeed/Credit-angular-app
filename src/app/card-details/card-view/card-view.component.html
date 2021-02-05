@@ -1,0 +1,39 @@
+<div class="card">
+
+    <div class="card-header"
+    *ngIf="card">
+      {{pageTitle}}
+    </div>
+    <div class="card-body"  
+       *ngIf="card">  
+       <div class="row">  
+        <div class="col-md-8">  
+          <div class="row">  
+            <div class="col-md-3">Credit Card Number:</div>  
+            <div class="col-md-6">{{card.cardNumber}}</div>  
+          </div>  
+          <div class="row">  
+            <div class="col-md-3">Card Holder:</div>  
+            <div class="col-md-6">{{card.cardHolder}}</div>  
+          </div>  
+          <div class="row">  
+            <div class="col-md-3">Expiration Date:</div>  
+            <div class="col-md-6">{{card.expirationDate}}</div>  
+          </div>  
+          <div class="row">  
+            <div class="col-md-3">Security Code - CCV:</div>  
+            <div class="col-md-6">{{card.securityCode}}</div>  
+          </div>  
+          <div class="row">  
+            <div class="col-md-3">Amount:</div>  
+            <div class="col-md-6">{{card.amount}}</div>  
+          </div>  
+        </div>  
+      </div>  
+  </div>
+    
+  </div>
+  <div *ngIf="errorMessage"
+       class="alert alert-danger">
+    Error: {{ errorMessage }}
+  </div>

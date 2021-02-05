@@ -25,7 +25,7 @@ export class CardService {
   createCard(card: Card): Observable<Card> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     // Card Id must be null for the Web API to assign an Id
-    const newCard = { ...card, id: 10 };
+    const newCard = { ...card, id: Math.floor(Math.random() * 1000) + 1 };
     return this.http.post<Card>(this.cardUrl, newCard, { headers })
       .pipe(
         tap(data => console.log('createCard: ' + JSON.stringify(data))),

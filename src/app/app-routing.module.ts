@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ShellComponent } from './menu/shell.component';
+import { HomeComponent } from './home/home.component';
+import { ShellComponent } from './home/shell.component';
 
 const routes: Routes = [
   {
     path: '',
     component: ShellComponent,
     children: [
+      { path: 'home', component: HomeComponent },
       {
         path: 'card',
         loadChildren: () =>

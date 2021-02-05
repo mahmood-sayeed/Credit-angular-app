@@ -26,6 +26,12 @@ export class CardEffects {
       );
   });
 
+
+  // concatMap((action) =>
+  //     of(action).pipe(withLatestFrom(this.store.select(selectProducts))),
+  //   ),
+  //   filter(([{ payload }, products]) => !!products[payload.sku]),
+
   // updateCard$ = createEffect(() => {
   //   return this.actions$
   //     .pipe(

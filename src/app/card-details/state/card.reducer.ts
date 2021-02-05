@@ -8,11 +8,13 @@ import { CardApiActions, CardPageActions } from './actions';
 export interface CardState {
   card: Card;
   error: string;
+  success: string;
 }
 
 const initialState: CardState = {
   card: {} as Card,
-  error: ''
+  error: '',
+  success: ''
 };
 
 export const cardReducer = createReducer<CardState>(
@@ -39,14 +41,16 @@ export const cardReducer = createReducer<CardState>(
     return {
       ...state,
       card: action.card,
-      error: ''
+      error: '',
+      success: ''
     };
   }),
   on(CardApiActions.loadCardFailure, (state, action): CardState => {
     return {
       ...state,
       card: {} as Card,
-      error: action.error
+      error: action.error,
+      success: ''
     };
   }),
   // on(CardApiActions.updateCardSuccess, (state, action): CardState => {
@@ -70,13 +74,15 @@ export const cardReducer = createReducer<CardState>(
     return {
       ...state,
       card: action.card,
-      error: ''
+      error: '',
+      success: ''
     };
   }),
   on(CardApiActions.createCardFailure, (state, action): CardState => {
     return {
       ...state,
-      error: action.error
+      error: action.error,
+      success: ''
     };
   })
 );

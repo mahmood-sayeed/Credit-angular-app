@@ -14,14 +14,18 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 
 import { SharedModule } from './shared/shared.module';
-import { MenuComponent } from './menu/menu.component';
-import { ShellComponent } from './menu/shell.component';
+import { MenuComponent } from './home/menu.component';
+import { ShellComponent } from './home/shell.component';
+import { CardViewComponent } from './card-details/card-view/card-view.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    ShellComponent
+    ShellComponent,
+    CardViewComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

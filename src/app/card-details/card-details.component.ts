@@ -21,11 +21,13 @@ import { DateValidators } from '../shared/date.validator';
 export class CardDetailsComponent implements OnInit {
   pageTitle = 'Credit Card Detail';
   @Input() errorMessage: string = '';
+  @Input() successMessage: string = '';
   @Output() create = new EventEmitter<Card>();
   @Output() clearCurrent = new EventEmitter<void>();
 
   cardForm: FormGroup;
   creditCard: Card;
+  today = new Date();
 
   // Use with the generic validation message class
   displayMessage: { [key: string]: string } = {};
@@ -63,13 +65,13 @@ export class CardDetailsComponent implements OnInit {
   
 
   ngOnInit(): void {
-    var today = new Date();
+   
 
     // Define the form group
     this.cardForm = this.fb.group({
       cardNumber: ['', Validators.required],
       cardHolder: ['', Validators.required],
-      expirationDate: ['', [Validators.required, DateValidators.minimumDate(this.addDays(today,1))]],
+      expirationDate: ['', [Validators.required, DateValidators.minimumDate(this.addDays(this.today,1))]],
       securityCode: ['', Validators.maxLength(3)],
       amount: ['',[Validators.required, Validators.min(1)]],
     });

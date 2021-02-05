@@ -1,4 +1,3 @@
-<p>card-details works!</p>
 
 <div class="card">
   <div class="card-header">
@@ -60,6 +59,7 @@
                      type="date"
                      placeholder="Expiration Date (required)"
                      formControlName="expirationDate"
+                     min={{today}}
                      (blur)="blur()"
                      required />
               <span class="invalid-feedback"
