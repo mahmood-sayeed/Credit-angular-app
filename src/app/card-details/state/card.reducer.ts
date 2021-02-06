@@ -20,21 +20,11 @@ const initialState: CardState = {
 export const cardReducer = createReducer<CardState>(
   initialState,
 
-  // on(CardPageActions.setCurrentCard, (state, action): CardState => {
-  //   return {
-  //     ...state,
-  //     currentCardId: action.currentCardId
-  //   };
-  // }),
-  // on(CardPageActions.clearCurrentCard, (state): CardState => {
-  //   return {
-  //     ...state,
-  //     currentCardId: null
-  //   };
-  // }),
   on(CardPageActions.initializeCurrentCard, (state): CardState => {
     return {
-      ...state
+      ...state,
+      error: '',
+      success: ''
     };
   }),
   on(CardApiActions.loadCardSuccess, (state, action): CardState => {
@@ -53,29 +43,12 @@ export const cardReducer = createReducer<CardState>(
       success: ''
     };
   }),
-  // on(CardApiActions.updateCardSuccess, (state, action): CardState => {
-  //   const updatedCards = state.cards.map(
-  //     item => action.card.id === item.id ? action.card : item);
-  //   return {
-  //     ...state,
-  //     cards: updatedCards,
-  //     currentCardId: action.card.id,
-  //     error: ''
-  //   };
-  // }),
-  // on(CardApiActions.updateCardFailure, (state, action): CardState => {
-  //   return {
-  //     ...state,
-  //     error: action.error
-  //   };
-  // }),
-  // After a create, the currentCard is the new card.
   on(CardApiActions.createCardSuccess, (state, action): CardState => {
     return {
       ...state,
       card: action.card,
       error: '',
-      success: ''
+      success: action.success
     };
   }),
   on(CardApiActions.createCardFailure, (state, action): CardState => {

@@ -1,15 +1,9 @@
 <div class='row'>
-    <div class='col-md-4'>
-      <!-- <pm-card-list 
-                       [card]="card$ | async"
-                       [errorMessage]="errorMessage$ | async"
-                       
-                       ></pm-card-list> -->
-    </div>
     <div class='col-md-8'>
       <pm-card-edit 
                        [errorMessage]="errorMessage$ | async"
-                       
+                       [successMessage]="successMessage$ | async"
+                       (initializeNewCard)="newCard()"
                        
                        (create)="saveCard($any($event))"></pm-card-edit>
     </div>

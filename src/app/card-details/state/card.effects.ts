@@ -27,25 +27,6 @@ export class CardEffects {
   });
 
 
-  // concatMap((action) =>
-  //     of(action).pipe(withLatestFrom(this.store.select(selectProducts))),
-  //   ),
-  //   filter(([{ payload }, products]) => !!products[payload.sku]),
-
-  // updateCard$ = createEffect(() => {
-  //   return this.actions$
-  //     .pipe(
-  //       ofType(CardPageActions.updateCard),
-  //       concatMap(action =>
-  //         this.cardService.updateCard(action.card)
-  //           .pipe(
-  //             map(card => CardApiActions.updateCardSuccess({ card })),
-  //             catchError(error => of(CardApiActions.updateCardFailure({ error })))
-  //           )
-  //       )
-  //     );
-  // });
-
   createCard$ = createEffect(() => {
     return this.actions$
       .pipe(
@@ -53,7 +34,7 @@ export class CardEffects {
         concatMap(action =>
           this.cardService.createCard(action.card)
             .pipe(
-              map(card => CardApiActions.createCardSuccess({ card })),
+              map(card => CardApiActions.createCardSuccess({ card: card, success: 'Credit Card Details Saved Successfully!!' })),
               catchError(error => of(CardApiActions.createCardFailure({ error })))
             )
         )

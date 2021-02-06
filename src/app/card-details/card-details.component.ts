@@ -3,9 +3,7 @@ import {
   OnInit,
   Input,
   EventEmitter,
-  Output,
-  OnChanges,
-  SimpleChanges
+  Output
  } from '@angular/core';
 import { Card } from './card';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -19,10 +17,11 @@ import { DateValidators } from '../shared/date.validator';
   styleUrls: ['./card-details.component.css']
 })
 export class CardDetailsComponent implements OnInit {
-  pageTitle = 'Credit Card Detail';
+  pageTitle = 'Add Credit Card Detail';
   @Input() errorMessage: string = '';
   @Input() successMessage: string = '';
   @Output() create = new EventEmitter<Card>();
+  @Output() initializeNewCard = new EventEmitter<void>();
   @Output() clearCurrent = new EventEmitter<void>();
 
   cardForm: FormGroup;
@@ -80,15 +79,10 @@ export class CardDetailsComponent implements OnInit {
     this.cardForm.valueChanges.subscribe(
       () => this.displayMessage = this.genericValidator.processMessages(this.cardForm)
     );
-  }
 
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   // patch form with value from the store
-  //   if (changes.selectedCard) {
-  //     const card = changes.selectedCard.currentValue as Card;
-  //     this.displayCard(card);
-  //   }
-  // }
+    //Initialize new card
+    this.newCard();
+  }
 
   // Also validate on blur
   // Helpful if the user tabs through required fields
@@ -96,32 +90,13 @@ export class CardDetailsComponent implements OnInit {
     this.displayMessage = this.genericValidator.processMessages(this.cardForm);
   }
 
-  // displayCard(card: Card | null): void {
-  //   if (card && this.cardForm) {
-  //     // Reset the form back to pristine
-  //     this.cardForm.reset();
-
-  //     // Display the appropriate page title
-  //     if (card.id === 0) {
-  //       this.pageTitle = 'Add Card';
-  //     } else {
-  //       this.pageTitle = `Edit Card: ${card.productName}`;
-  //     }
-
-  //     // Update the data on the form
-  //     this.cardForm.patchValue({
-  //       cardNumber: card.cardNumber,
-  //       cardHolder: card.cardHolder,
-  //       expirationDate: card.expirationDate,
-  //       securityCode: card.securityCode,
-  //       amount: card.amount
-  //     });
-  //   }
-  // }
-
   addDays(currentDate: Date, days : number): Date{
     currentDate.setDate(currentDate.getDate() + days);
     return currentDate;
+  }
+
+  newCard(): void {
+    this.initializeNewCard.emit();
   }
 
   saveCard(): void {

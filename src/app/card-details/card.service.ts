@@ -33,18 +33,6 @@ export class CardService {
       );
   }
 
-  // updateCard(card: Card): Observable<Card> {
-  //   const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-  //   const url = `${this.cardsUrl}/${card.id}`;
-  //   return this.http.put<Card>(url, card, { headers })
-  //     .pipe(
-  //       tap(() => console.log('updateCard: ' + card.id)),
-  //       // Return the card on an update
-  //       map(() => card),
-  //       catchError(this.handleError)
-  //     );
-  // }
-
   private handleError(err: any) {
     // in a real world app, we may send the server to some remote logging infrastructure
     // instead of just logging it to the console

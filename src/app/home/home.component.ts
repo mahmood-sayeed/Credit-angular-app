@@ -17,8 +17,6 @@ export class HomeComponent implements OnInit {
   errorMessage$: Observable<string>;
 
 
-  
-
   constructor(private store: Store<State>) { }
 
   ngOnInit(): void {

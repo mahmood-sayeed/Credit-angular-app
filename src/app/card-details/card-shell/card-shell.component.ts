@@ -5,7 +5,7 @@ import { Card } from '../card';
 
 /* NgRx */
 import { Store } from '@ngrx/store';
-import { State, getCard, getError } from '../state';
+import { State, getCard, getError, getSuccess } from '../state';
 
 import { CardPageActions } from '../state/actions';
 
@@ -15,6 +15,7 @@ import { CardPageActions } from '../state/actions';
 export class CardShellComponent implements OnInit {
   card$: Observable<Card>;
   errorMessage$: Observable<string>;
+  successMessage$: Observable<string>;
 
   constructor(private store: Store<State>) { }
 
@@ -27,22 +28,17 @@ export class CardShellComponent implements OnInit {
     // Do NOT subscribe here because it uses an async pipe
     this.errorMessage$ = this.store.select(getError);
 
-    // this.store.dispatch(CardPageActions.loadCard());
-
   }
-
 
   newCard(): void {
     this.store.dispatch(CardPageActions.initializeCurrentCard());
   }
 
-
   saveCard(card: Card): void {
     this.store.dispatch(CardPageActions.createCard({ card }));
+    
+    // Do NOT subscribe here because it uses an async pipe
+    this.successMessage$ = this.store.select(getSuccess);
     console.log(card);
   }
-
-  // updateCard(card: Card): void {
-  //   this.store.dispatch(CardPageActions.updateCard({ card }));
-  // }
 }
