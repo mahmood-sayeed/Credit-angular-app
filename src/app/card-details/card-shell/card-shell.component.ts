@@ -25,9 +25,6 @@ export class CardShellComponent implements OnInit {
     // This gets the initial values until the load is complete.
     this.card$ = this.store.select(getCard);
 
-    // Do NOT subscribe here because it uses an async pipe
-    this.errorMessage$ = this.store.select(getError);
-
   }
 
   newCard(): void {
@@ -35,10 +32,14 @@ export class CardShellComponent implements OnInit {
   }
 
   saveCard(card: Card): void {
-    this.store.dispatch(CardPageActions.createCard({ card }));
+     // Do NOT subscribe here because it uses an async pipe
+    this.errorMessage$ = this.store.select(getError);
     
-    // Do NOT subscribe here because it uses an async pipe
+     // Do NOT subscribe here because it uses an async pipe
     this.successMessage$ = this.store.select(getSuccess);
+
+    this.store.dispatch(CardPageActions.createCard({ card }));
+   
     console.log(card);
   }
 }

@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { GenericValidator } from '../shared/generic-validator';
 import { DateValidators } from '../shared/date.validator';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'pm-card-edit',
@@ -26,14 +27,14 @@ export class CardDetailsComponent implements OnInit {
 
   cardForm: FormGroup;
   creditCard: Card;
-  today = new Date();
+  tomorrow = this.datePipe.transform(this.addDays(new Date(),1),"YYYY-MM-dd");
 
   // Use with the generic validation message class
   displayMessage: { [key: string]: string } = {};
   private validationMessages: { [key: string]: { [key: string]: string } };
   private genericValidator: GenericValidator;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private datePipe: DatePipe) {
     // Defines all of the validation messages for the form.
     // These could instead be retrieved from a file or database.
     this.validationMessages = {
@@ -70,7 +71,7 @@ export class CardDetailsComponent implements OnInit {
     this.cardForm = this.fb.group({
       cardNumber: ['', Validators.required],
       cardHolder: ['', Validators.required],
-      expirationDate: ['', [Validators.required, DateValidators.minimumDate(this.addDays(this.today,1))]],
+      expirationDate: ['', [Validators.required, DateValidators.minimumDate(this.tomorrow)]],
       securityCode: ['', Validators.maxLength(3)],
       amount: ['',[Validators.required, Validators.min(1)]],
     });

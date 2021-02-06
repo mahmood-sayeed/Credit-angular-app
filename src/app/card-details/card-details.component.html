@@ -17,7 +17,7 @@
                    class="form-control"
                    id="cardNumberId"
                    type="text"
-                   placeholder="Number (required)"
+                   placeholder="Card Number (required)"
                    formControlName="cardNumber"
                    (blur)="blur()"
                    required />
@@ -59,7 +59,7 @@
                      type="date"
                      placeholder="Expiration Date (required)"
                      formControlName="expirationDate"
-                     min={{today}}
+                     min={{tomorrow}}
                      (blur)="blur()"
                      required />
               <span class="invalid-feedback"
